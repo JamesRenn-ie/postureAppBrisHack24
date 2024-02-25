@@ -12,7 +12,7 @@ import android.os.Vibrator;
 import android.os.VibrationEffect;
 import android.view.View;
 import android.widget.TextView;
-
+import com.google.android.material.slider.Slider;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
@@ -21,11 +21,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor mySensor;
     private SensorManager SM;
     private Vibrator vibrator;
+    private Float postureVal;
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        xText.setText("Posture Score: " + Math.round(event.values[0]));
-
+        if (event.values[0] < 0) {
+            xText.setText("Posture Score: " + -Math.round(event.values[0]));
+        }
+        else {
+            xText.setText("Posture Score: " + Math.round(event.values[0]));
+        }
 
 //        yText.setText("Y " + Math.round(event.values[1]));
 //        zText.setText("Z " + Math.round(event.values[2]));
@@ -62,7 +67,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         xText = (TextView) findViewById(R.id.xText);
 //        yText = (TextView) findViewById(R.id.yText);
 //        zText = (TextView) findViewById(R.id.zText);
-    }
+        
+
+        }
 
     private void startForegroundService(){
 
