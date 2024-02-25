@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Vibrator vibrator;
     private Float postureVal = 0.0f;
 
-    private Float postureVal = 0.0f;
-
 
     @Override
     public void onSensorChanged(SensorEvent event) {
