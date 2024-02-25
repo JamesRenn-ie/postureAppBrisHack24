@@ -24,9 +24,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        xText.setText("X " + Math.round(event.values[0]));
-        yText.setText("Y " + Math.round(event.values[1]));
-        zText.setText("Z " + Math.round(event.values[2]));
+        xText.setText("Posture Score: " + Math.round(event.values[0]));
+
+
+//        yText.setText("Y " + Math.round(event.values[1]));
+//        zText.setText("Z " + Math.round(event.values[2]));
 
         if(Math.abs(event.values[0]) < 6) {
             vibrator.vibrate(1000);
@@ -58,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //Assign TextView
         xText = (TextView) findViewById(R.id.xText);
-        yText = (TextView) findViewById(R.id.yText);
-        zText = (TextView) findViewById(R.id.zText);
+//        yText = (TextView) findViewById(R.id.yText);
+//        zText = (TextView) findViewById(R.id.zText);
     }
 
     private void startForegroundService(){
