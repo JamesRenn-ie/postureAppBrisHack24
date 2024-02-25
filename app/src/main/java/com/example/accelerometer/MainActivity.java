@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         zText.setText("Z " + Math.round(event.values[2]));
 
         if(event.values[0] < 6) {
-            vibrator.vibrate(1001);
+            vibrator.vibrate(1000);
 
         }
     }
