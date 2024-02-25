@@ -17,11 +17,11 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
-    private TextView xText, yText, zText;
+    private TextView xText, yText, zText, textView2;
     private Sensor mySensor;
     private SensorManager SM;
     private Vibrator vibrator;
-    private Float postureVal;
+    private Float postureVal = 0.0f;
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -32,10 +32,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             xText.setText("Posture Score: " + Math.round(event.values[0]));
         }
 
+
 //        yText.setText("Y " + Math.round(event.values[1]));
 //        zText.setText("Z " + Math.round(event.values[2]));
 
-        if(Math.abs(event.values[0]) < 6) {
+        if(Math.abs(event.values[0]) < postureVal) {
             vibrator.vibrate(1000);
             findViewById(R.id.rlVar1).setBackgroundColor(getResources().getColor(R.color.warning));
         }else findViewById(R.id.rlVar1).setBackgroundColor(getResources().getColor(R.color.black));
@@ -67,9 +68,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         xText = (TextView) findViewById(R.id.xText);
 //        yText = (TextView) findViewById(R.id.yText);
 //        zText = (TextView) findViewById(R.id.zText);
-        
+        textView2 = (TextView) findViewById(R.id.textView2);
 
-        }
+        Slider slider = findViewById(R.id.slider);
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(Slider slider, float value, boolean fromUser) {
+                // This method is called when the value of the slider changes.
+                // You can access the current value of the slider using the 'value' parameter.
+                // Do something with the value...
+                // For example, you can display it in a TextView:
+                textView2.setText("Value " + value);
+                postureVal = value;
+            }
+        });
+
+
+    }
 
     private void startForegroundService(){
 
