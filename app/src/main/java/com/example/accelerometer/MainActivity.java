@@ -17,7 +17,7 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
-    private TextView xText, yText, zText, textView2;
+    private TextView xText, yText, zText;
     private Sensor mySensor;
     private SensorManager SM;
     private Vibrator vibrator;
@@ -25,12 +25,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.values[0] < 0) {
-            xText.setText("Posture Score: " + -Math.round(event.values[0]));
-        }
-        else {
-            xText.setText("Posture Score: " + Math.round(event.values[0]));
-        }
+//        if (event.values[0] < 0) {
+//            xText.setText("Posture Score: " + -Math.round(event.values[0]));
+//        }
+//        else {
+//            xText.setText("Posture Score: " + Math.round(event.values[0]));
+//        }
+
+        xText.setText("Posture Score: " + Math.abs(Math.round(event.values[0])));
 
 
 //        yText.setText("Y " + Math.round(event.values[1]));
@@ -68,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         xText = (TextView) findViewById(R.id.xText);
 //        yText = (TextView) findViewById(R.id.yText);
 //        zText = (TextView) findViewById(R.id.zText);
-        textView2 = (TextView) findViewById(R.id.textView2);
-
         Slider slider = findViewById(R.id.slider);
         slider.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 // You can access the current value of the slider using the 'value' parameter.
                 // Do something with the value...
                 // For example, you can display it in a TextView:
-                textView2.setText("Value " + value);
                 postureVal = value;
             }
         });
