@@ -5,6 +5,8 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+
+
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
@@ -14,7 +16,7 @@ import android.os.VibrationEffect;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import com.google.android.material.slider.Slider;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor mySensor;
     private SensorManager SM;
     private Vibrator vibrator;
+    private Float postureVal = 0.0f;
 
     private Float postureVal = 0.0f;
 
@@ -39,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //            xText.setText("Posture Score: " + Math.round(event.values[0]));
 //        }
 
-        xText.setText("Posture Score: " + Math.abs(Math.round(event.values[0])));
 
+        xText.setText("Posture Score: " + Math.abs(Math.round(event.values[0])));
 
 //        yText.setText("Y " + Math.round(event.values[1]));
 //        zText.setText("Z " + Math.round(event.values[2]));
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         //not in use
     }
+
 
 
 
@@ -80,8 +84,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             Button startServiceButton = findViewById(R.id.startServiceButton);
             Button stopServiceButton = findViewById(R.id.stopServiceButton);
-//        yText = (TextView) findViewById(R.id.yText);
-//        zText = (TextView) findViewById(R.id.zText);
+
             Slider slider = findViewById(R.id.slider);
             slider.addOnChangeListener(new Slider.OnChangeListener() {
                 @Override
@@ -115,6 +118,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 stopService(stopIntent);
             }
         });
+
+
+        
+
+
+
     }
 
     private void startForegroundService(){
