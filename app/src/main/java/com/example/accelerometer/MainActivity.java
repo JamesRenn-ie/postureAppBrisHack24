@@ -1,6 +1,7 @@
 package com.example.accelerometer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         if(event.values[0] < 6) {
             vibrator.vibrate(1000);
-
-        }
+            findViewById(R.id.rlVar1).setBackgroundColor(getResources().getColor(R.color.warning));
+        }else findViewById(R.id.rlVar1).setBackgroundColor(getResources().getColor(R.color.black));
     }
 
     @Override
