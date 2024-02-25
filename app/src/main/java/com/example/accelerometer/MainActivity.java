@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         yText.setText("Y " + Math.round(event.values[1]));
         zText.setText("Z " + Math.round(event.values[2]));
 
-        if(event.values[0] < 6) {
+        if(Math.abs(event.values[0]) < 6) {
             vibrator.vibrate(1000);
             findViewById(R.id.rlVar1).setBackgroundColor(getResources().getColor(R.color.warning));
         }else findViewById(R.id.rlVar1).setBackgroundColor(getResources().getColor(R.color.black));
